@@ -1,6 +1,6 @@
 # HTML Dialog Element React
 
-In a previous article i have shown how to use the HTML dialog element with React. Since then I have found a better way to use the element with React. Let's dive into it.
+In a [previous article](https://dev.to/fibonacid/taming-the-html-dialog-with-react-and-tailwindcss-5hec) i have shown how to use the HTML [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element with React. Since then I have found a better way to use the element with React. Let's dive into it.
 
 ## App example
 
@@ -43,7 +43,7 @@ export default function App() {
 ```
 
 Nothing remarkable here. Let's add the dialog element.
-We are going to create a `Dialog.tsx` with the bare minimum to make the element play nice with React.
+We are going to create a [`Dialog`](https://github.com/fibonacid/html-dialog-element-react/blob/main/src/Dialog.tsx) component with the bare minimum to make the element play nice with React.
 
 Let's start with the props:
 
@@ -58,8 +58,8 @@ export type DialogProps = Omit<
 ```
 
 We want to extend the native dialog props with some modifications:
-The `open` prop should be required, signaling that the dialog needs to be controlled by the parent component.
-A similar thing needs to happen with the `onClose` method: Instead of passing the event, which is not very useful, we can pass the return value of the dialog.
+The [`open`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#open) prop should be required, signaling that the dialog needs to be controlled by the parent component.
+A similar thing needs to happen with the [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event) method: Instead of passing the event, which is not very useful, we can pass the return value of the dialog.
 
 Now let's create the component:
 
@@ -89,7 +89,7 @@ export default function Dialog(props: DialogProps) {
 ```
 
 Now we can use the dialog in our app.
-Let's create a new component called `CreateTodo`:
+Let's create a new component called [`CreateTodo`](https://github.com/fibonacid/html-dialog-element-react/blob/main/src/CreateTodo.tsx):
 
 ```tsx
 import { useState } from "react";
@@ -153,7 +153,7 @@ This component wraps the `Dialog` component we just created and adds the necessa
 <form method="dialog">{/* ... */}</form>
 ```
 
-This form is essential to make the dialog work. It tells the browser that this form is part of the dialog and that the dialog should be closed when the form is submitted.
+This form is essential to make the dialog work. It uses the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) attribute to tell the browser to close the dialog when the form is submitted.
 
 ```tsx
 <input
@@ -164,7 +164,8 @@ This form is essential to make the dialog work. It tells the browser that this f
    value={value}
 />
 ```
-This input is necessary to register the return value of the dialog. The `autoFocus` attribute is there to make sure the input is focused when the dialog opens.
+
+This input is necessary to register the return value of the dialog. The [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus) attribute is there to make sure the input is focused when the dialog opens.
 
 ```tsx
 <div className="flex gap-2">
@@ -181,9 +182,9 @@ This input is necessary to register the return value of the dialog. The `autoFoc
 </div>;
 ```
 
-This buttons are the ones that will close the dialog. The first one uses the `formmethod` attribute to tell the browser to close the dialog without returning a value. The second one uses the `value` attribute set its state the the value of the input. When the dialog closes, the browser will set the `returnValue` property of the dialog to the value of the button.
+These buttons are the ones that will close the dialog. The first one uses the [`formmethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute to tell the browser to close the dialog without returning a value. The second one uses the `value` attribute set its state the the value of the input. When the dialog closes, the browser will set the `returnValue` property of the dialog to the value of the button.
 
-Since in out `Dialog` component we have overridden the `onClose` method, we can get the return value from the `App` component as follows:
+Since in our `Dialog` component we have overridden the `onClose` method, we can get the return value from the `App` component as follows:
 
 ```tsx
 export default function App() {
