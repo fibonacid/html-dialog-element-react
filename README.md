@@ -1,8 +1,8 @@
 # HTML Dialog Element React
 
-In a [previous article](https://dev.to/fibonacid/taming-the-html-dialog-with-react-and-tailwindcss-5hec) i have shown how to use the HTML [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element with React. Since then I have found a better way to use the element with React. Let's dive into it.
+In a [previous article](https://dev.to/fibonacid/taming-the-html-dialog-with-react-and-tailwindcss-5hec) i have shown how to use the HTML [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element with React. Since then I have found a better solution. Let's dive into it.
 
-## App example
+## TODO App
 
 Let's build a todo app with a list of todos and a button to generate a new todo. The todo will be generated in a dialog element.
 
