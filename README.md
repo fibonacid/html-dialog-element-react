@@ -211,3 +211,5 @@ export default function App() {
   );
 }
 ```
+
+And that's it! You can find the full code [here](https://github.com/fibonacid/html-dialog-element-react/tree/main/src)
