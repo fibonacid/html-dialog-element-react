@@ -5,31 +5,32 @@ import {
   useRef,
 } from "react";
 
-export type DialogProps = ComponentPropsWithoutRef<"dialog"> & {
+export type DialogProps = Omit<
+  ComponentPropsWithoutRef<"dialog">,
+  "onClose"
+> & {
   open: boolean; // required
   onClose: (returnValue?: string) => void; // override
 };
 
 export default function Dialog(props: DialogProps) {
   const { open, children, onClose, ...rest } = props;
-  const ref = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    const dialog = ref.current!;
     if (open) {
-      dialog.showModal();
+      dialogRef.current?.showModal();
     } else {
-      dialog.close();
+      dialogRef.current?.close();
     }
   }, [open]);
 
   const handleClose = useCallback(() => {
-    const dialog = ref.current!;
-    onClose(dialog.returnValue);
+    onClose(dialogRef.current?.returnValue);
   }, [onClose]);
 
   return (
-    <dialog ref={ref} {...rest} onClose={handleClose}>
+    <dialog ref={dialogRef} onClose={handleClose} {...rest}>
       {children}
     </dialog>
   );
