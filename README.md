@@ -149,20 +149,19 @@ export function CreateTodo({
 
 This component wraps the `Dialog` component we just created and adds the necessary markup and logic to create a new todo. Let's dissect it:
 
-```html
-<form method="dialog">
+```tsx
+<form method="dialog">{/* ... */}</form>
 ```
+
 This form is essential to make the dialog work. It tells the browser that this form is part of the dialog and that the dialog should be closed when the form is submitted.
 
 ```tsx
 <input
-    id="todo-name"
-    className="border rounded p-1 w-full"
-    value={value}
-    autoFocus
-    onChange={(e) => {
-       setValue(e.target.value);
-    }}
+   id="todo-name"
+   className="border rounded p-1 w-full"
+   autoFocus
+   onChange={(e) => setValue(e.target.value)}
+   value={value}
 />
 ```
 This input is necessary to register the return value of the dialog. The `autoFocus` attribute is there to make sure the input is focused when the dialog opens.
